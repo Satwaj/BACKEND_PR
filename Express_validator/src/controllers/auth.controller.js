@@ -1,10 +1,15 @@
-export async function registerUser(req,res,next){
+export async function registerUser(req, res, next) {
+    res.status(201).json({
+        message: "User registered successfully"
+    })
+}
 
-try{
-  throw new Error("password must be strong")
-}catch(error){
-  error.status = 400
-  next(error)
-}
-  
-}
+
+/**
+ * user => 
+ * {
+ * username:{ type: String, required: true },
+ * email:{ type: String, required: true,unique: true },
+ * password:{ type: String, required: true }
+ * }
+ */
