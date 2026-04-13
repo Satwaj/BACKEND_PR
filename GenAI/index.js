@@ -40,18 +40,22 @@ const agent = createAgent({
 const messages = []
 
 while (true) {
-    const userInput = await rl.question("\x1b[32mYou:\x1b[0m ")
+    try {
+        const userInput = await rl.question("\x1b[32mYou:\x1b[0m ")
 
-    messages.push(new HumanMessage(userInput))
+        messages.push(new HumanMessage(userInput))
 
-    const response = await agent.invoke({
-        messages
-    })
+        const response = await agent.invoke({
+            messages
+        })
 
-    messages.push(response.messages[ response.messages.length - 1 ])
+        messages.push(response.messages[ response.messages.length - 1 ])      
 
-
-
-    console.log(`\x1b[34m[AI]\x1b[0m ${response.messages[ response.messages.length - 1 ].content}`)
+        console.log(`\x1b[34m[AI]\x1b[0m ${response.messages[ response.messages.length - 1 ].content}`)
+        console.log() // blank line for readability
+    } catch (error) {
+        console.error("\x1b[31m[Error]\x1b[0m", error.message)
+        console.log() // blank line for readability
+    }
 }
 

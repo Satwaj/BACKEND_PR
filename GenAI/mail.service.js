@@ -50,9 +50,8 @@ transporter.verify()
     }
 
      const details = await transporter.sendMail(mailOptions)
-     console.log("Email sent successfully",details)
-     
-       return "email sent successfully, to " + to;
+     console.log("✓ Email sent successfully to", to)
+     return "Email sent successfully to " + to;
   }
  
 
